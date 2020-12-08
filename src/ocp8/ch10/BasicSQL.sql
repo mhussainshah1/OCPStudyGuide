@@ -1,0 +1,11 @@
+/**
+ * Author:  m_hus
+ * Created: May 11, 2020
+ */
+
+INSERT INTO species VALUES (3, 'Asian Elephant', 7.5);
+SELECT * FROM SPECIES WHERE ID=3;
+SELECT "NAME",NUM_ACRES FROM SPECIES WHERE ID=3;
+SELECT COUNT(*), SUM(num_acres) FROM SPECIES;
+UPDATE SPECIES SET NUM_ACRES = NUM_ACRES + .5 WHERE NAME = 'Asian Elephant';
+DELETE FROM SPECIES WHERE NAME = 'Asian Elephant';

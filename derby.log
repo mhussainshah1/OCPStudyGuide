@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon Nov 16 05:00:31 EST 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0175-d07f-b4a8-00000f7bba78 
+on database directory C:\Users\m_hus\Documents\NetBeansProjects\OCPStudyGuide\zoo with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@65b54208 
+Loaded from file:/C:/Program%20Files/Java/jdk-14.0.2/db/db-derby-10.14.2.0-lib/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=14.0.2+12-46
+user.dir=C:\Users\m_hus\Documents\NetBeansProjects\OCPStudyGuide
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
