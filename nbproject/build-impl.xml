@@ -1336,7 +1336,7 @@ is divided into following sections:
     <target name="-do-not-recompile">
         <property name="javac.includes.binary" value=""/>
     </target>
-    <target depends="init,compile-single" name="run-single">
+    <target depends="init" name="run-single">
         <fail unless="run.class">Must select one file in the IDE or set run.class</fail>
         <j2seproject1:java classname="${run.class}"/>
     </target>
