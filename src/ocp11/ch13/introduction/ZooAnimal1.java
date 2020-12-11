@@ -1,10 +1,12 @@
-package ocp11.ch13;
+package ocp11.ch13.introduction;
+
+import ocp11.ch13.introduction.Lion;
 
 @interface ZooAnimal1 {
     String habitat();
 }
 
-public class Veterinarian {
+class Veterinarian {
 
     @ZooAnimal1(habitat = "Infirmary")
     private Lion sickLion;
@@ -14,4 +16,5 @@ public class Veterinarian {
 
     @ZooAnimal1(habitat = "Special Enclosure")
     private Lion blindLion;
+    
 }

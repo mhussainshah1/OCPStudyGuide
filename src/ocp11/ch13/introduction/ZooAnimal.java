@@ -1,9 +1,8 @@
-package ocp11.ch13;
+package ocp11.ch13.introduction;
+//Marker annotation
+public @interface ZooAnimal {}
 
-@interface ZooAnimal {
-}
-
-public class Mammal {}
+class Mammal {}
 
 class Bird {}
 
