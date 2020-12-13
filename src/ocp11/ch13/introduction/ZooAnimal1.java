@@ -1,7 +1,5 @@
 package ocp11.ch13.introduction;
 
-import ocp11.ch13.introduction.Lion;
-
 @interface ZooAnimal1 {
     String habitat();
 }

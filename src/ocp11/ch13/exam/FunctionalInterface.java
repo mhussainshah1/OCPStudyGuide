@@ -23,10 +23,11 @@ public class FunctionalInterface {
         String str="annotations";
         var myString = (@NonNull String) str;
 
-        Function<String, String> func3 = (@NonNull  var x) -> x.toUpperCase();
+        Function<String, String> func3 = (@NonNull var x) -> x.toUpperCase();
         
 //        var v = "Hello " + (@Interned) "World";
     }
 }
 
-class MyObject{}
+class MyObject{
+}

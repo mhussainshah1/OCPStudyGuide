@@ -5,6 +5,7 @@ import java.lang.annotation.Repeatable;
 @interface Scaley{}
 @interface Flexible{}
 
+//@Repeatable
 @interface Foods{
     Food[] value();
 }
