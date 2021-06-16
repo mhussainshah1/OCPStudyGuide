@@ -1,0 +1,430 @@
+Index: src/ocp11/ch03/Primitive.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ocp11.ch03;\r\n\r\npublic class Primitive {\r\n\r\n    long primitive() {\r\n        byte b = (byte) 1;\r\n             b = (short) 1;\r\n             b = 1; //int ( -128  tp 127)\r\n \r\n        \r\n        short s = (byte) 1;\r\n              s = (short) 1;\r\n              s = 1; //int (-32768 to 32767)\r\n\r\n        int i = (byte) 1;\r\n            i = (short) 1;\r\n            i = 1; // (-2^31)-1 to 2^31 \r\n        \r\n        long lo = (byte) 1;\r\n        lo = (short) 1;\r\n        lo = 1;\r\n        lo = 1L;\r\n        \r\n        float f = (byte) 1;\r\n              f = (short) 1;\r\n              f = 1;\r\n              f = 3.14f;\r\n        \r\n        double d = (byte) 1;\r\n               d = (short) 1;\r\n               d = 1;\r\n               d = 1L;\r\n               d = 3.14f;\r\n               d = 3.14; //double        \r\n        \r\n        char c = (byte) 1;\r\n             c = (short) 1;\r\n             c = 1;\r\n\r\n        return 1;\r\n    }\r\n\r\n    Long Wrapper() {\r\n        Byte b = (byte) 1;\r\n             b = (short) 1;\r\n             b = 1; //int\r\n        \r\n        Short s = (byte) 1;\r\n              s = (short) 1;\r\n              s = 1;\r\n        \r\n        Integer i = 1;\r\n        Long a = 1L;\r\n        Double d = 3.14;\r\n        Float f = 3.14f;\r\n        \r\n        Character c = (byte) 1;\r\n                  c = (short) 1;\r\n                  c = 1;\r\n\r\n        return 1L;\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ocp11/ch03/Primitive.java b/src/ocp11/ch03/Primitive.java
+--- a/src/ocp11/ch03/Primitive.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/ocp11/ch03/Primitive.java	(date 1610699201950)
+@@ -2,24 +2,25 @@
+ 
+ public class Primitive {
+ 
+-    long primitive() {
++    void primitive() {
++        boolean bo = true;
++
+         byte b = (byte) 1;
+              b = (short) 1;
+-             b = 1; //int ( -128  tp 127)
+- 
+-        
++             b = 1; //int ( -128  to 127)
++
+         short s = (byte) 1;
+               s = (short) 1;
+               s = 1; //int (-32768 to 32767)
+ 
+         int i = (byte) 1;
+             i = (short) 1;
+-            i = 1; // (-2^31)-1 to 2^31 
+-        
++            i = 1; // int (-2,147,483,648 to 2,147,483,647)
++
+         long lo = (byte) 1;
+-        lo = (short) 1;
+-        lo = 1;
+-        lo = 1L;
++             lo = (short) 1;
++             lo = 1;
++             lo = 1L;
+         
+         float f = (byte) 1;
+               f = (short) 1;
+@@ -36,11 +37,11 @@
+         char c = (byte) 1;
+              c = (short) 1;
+              c = 1;
+-
+-        return 1;
+     }
+ 
+-    Long Wrapper() {
++    void Wrapper() {
++        Boolean bo = false;
++
+         Byte b = (byte) 1;
+              b = (short) 1;
+              b = 1; //int
+@@ -50,15 +51,17 @@
+               s = 1;
+         
+         Integer i = 1;
++
+         Long a = 1L;
+-        Double d = 3.14;
++//             a = 1;
++
+         Float f = 3.14f;
++
++        Double d = 3.14;
+         
+         Character c = (byte) 1;
+                   c = (short) 1;
+                   c = 1;
+-
+-        return 1L;
+     }
+ 
+     public static void main(String[] args) {
+Index: src/java11/LocalVariable.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package java11;\r\n\r\nimport java.util.function.BiFunction;\r\nimport java.util.function.Function;\r\n\r\npublic class LocalVariable {\r\n\r\n    public static void main(String[] args) {\r\n\r\n        //Lambda expression could be explicitly typed\r\n        BiFunction<Item, Integer, String> process\r\n                = (Item x, Integer y) -> x.value(y);\r\n\r\n        //or lambda expression could be imlicitly typed\r\n        process = (x, y) -> x.value(y);\r\n\r\n        //or lambda expression can also be implicitly typed with var syntax\r\n        process = (var x, var y) -> x.value(y);\r\n\r\n        //These wont compile\r\n        process = (Item x, y) -> x.value(y);//can't mix implicit and explicit typed lambda parmeter\r\n        process = (var x, y) -> x.value(y);//can't mix var and non-var in implicit type\r\n        process = (var x, int y) -> x.value(y);//can't mix var and non-var in explicit\r\n\r\n        Function<Item, String> function = (Item x) -> x.toString();\r\n        function = (var x) -> x.toString();\r\n\r\n        //You can't omit parenthesis for single explicitly typed or var parameters\r\n        function = Item x -> x.toString();\r\n        function = var x -> x.toString();\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/java11/LocalVariable.java b/src/java11/LocalVariable.java
+--- a/src/java11/LocalVariable.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/java11/LocalVariable.java	(date 1609628432747)
+@@ -18,16 +18,16 @@
+         process = (var x, var y) -> x.value(y);
+ 
+         //These wont compile
+-        process = (Item x, y) -> x.value(y);//can't mix implicit and explicit typed lambda parmeter
+-        process = (var x, y) -> x.value(y);//can't mix var and non-var in implicit type
+-        process = (var x, int y) -> x.value(y);//can't mix var and non-var in explicit
++//        process = (Item x, y) -> x.value(y);//can't mix implicit and explicit typed lambda parmeter
++//        process = (var x, y) -> x.value(y);//can't mix var and non-var in implicit type
++//        process = (var x, int y) -> x.value(y);//can't mix var and non-var in explicit
+ 
+         Function<Item, String> function = (Item x) -> x.toString();
+         function = (var x) -> x.toString();
+ 
+         //You can't omit parenthesis for single explicitly typed or var parameters
+-        function = Item x -> x.toString();
+-        function = var x -> x.toString();
++//        function = Item x -> x.toString();
++//        function = var x -> x.toString();
+ 
+     }
+ }
+Index: src/java11/ReservedType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package java11;\r\n\r\nimport java.io.Serializable;\r\nimport java.util.function.Function;\r\n\r\npublic class ReservedType {\r\n\r\n    public static void main(String[] args) {\r\n        //keywords can't be used for variable names\r\n        int else =10;\r\n\r\n        //var isn`t keyword\r\n        int var = 10;\r\n\r\n        //variable must be initialized\r\n        var x = 30;\r\n        var itemDescription = \"Shirt\";\r\n\r\n        //For loop\r\n        for (var i = 0; i < 10; i++) {\r\n\r\n        }\r\n\r\n        //Enhanced For loop\r\n        for (var arg : args) {\r\n\r\n        }\r\n        //Non-Denotable\r\n        //Anonymous class\r\n        var productInfo = new Object() {\r\n            String name = \"Apple\";\r\n            int total = 30;\r\n        };\r\n        System.out.println(\"name = \" + productInfo.name + \", total = \"\r\n                + productInfo.total);\r\n\r\n        //Intersection types\r\n        (Function<Integer, Integer> & Serializable) action = (Function<Integer, Integer> & Serializable) i -> i + 1;\r\n        \r\n        Function<Integer, Integer> function = (Function<Integer, Integer> & Serializable) i -> i + 1;\r\n        \r\n        Serializable serial = (Function<Integer, Integer> & Serializable) i -> i + 1;\r\n        \r\n        var action = (Function<Integer, Integer> & Serializable) i -> i + 1;\r\n        \r\n         \r\n        //Can not do\r\n        var price;//declaration\r\n        var price = null;//initialize with null\r\n        var price = 9.95,tax = 0.08; //compound declaration\r\n        var prices = {9.95, 5, 3.50};//initialize array\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/java11/ReservedType.java b/src/java11/ReservedType.java
+--- a/src/java11/ReservedType.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/java11/ReservedType.java	(date 1609628683114)
+@@ -7,7 +7,7 @@
+ 
+     public static void main(String[] args) {
+         //keywords can't be used for variable names
+-        int else =10;
++//        int else =10;
+ 
+         //var isn`t keyword
+         int var = 10;
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1609626257674)
++++ b/.idea/.gitignore	(date 1609626257674)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Datasource local storage ignored files
++/../../../../../../:\Users\m_hus\IdeaProjects\OCPStudyGuide\.idea/dataSources/
++/dataSources.local.xml
++# Editor-based HTTP Client requests
++/httpRequests/
+Index: OCPStudyGuide.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/OCPStudyGuide.iml b/OCPStudyGuide.iml
+new file mode 100644
+--- /dev/null	(date 1609626252419)
++++ b/OCPStudyGuide.iml	(date 1609626252419)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/libraries/validation_api_2_0_1_Final.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/validation_api_2_0_1_Final.xml b/.idea/libraries/validation_api_2_0_1_Final.xml
+new file mode 100644
+--- /dev/null	(date 1609626252445)
++++ b/.idea/libraries/validation_api_2_0_1_Final.xml	(date 1609626252445)
+@@ -0,0 +1,9 @@
++<component name="libraryTable">
++  <library name="validation-api-2.0.1.Final">
++    <CLASSES>
++      <root url="jar://$PROJECT_DIR$/validation-api-2.0.1.Final.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: src/ocp11/exam_1Z0_819/Q1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ocp11.exam_1Z0_819;\r\n\r\n\r\nimport java.security.AccessController;\r\nimport java.security.PrivilegedAction;\r\nimport java.util.List;\r\n\r\n/**\r\n * Your organization makes mlib. jar available to your cloud customers. \r\n * While working on a code cleanup project for mlib.jar, you see this customer \r\n * visible method:\r\n */\r\n\r\npublic class Q1 {\r\n\r\n    public void setHostFailover(List<String> hostList) {\r\n        AccessController.doPrivileged((PrivilegedAction<Void>) () -> {\r\n            this.secureTransport.setHostFailover(hostList);\r\n            return null;\r\n        });\r\n    }\r\n}\r\n/**\r\n * \r\nWhat change should you make to this method so that it satisfies the requirements for a customer visible method?\r\nA) Add hostList = new ArrayList<>(hostList) ; before doPrivileged.\r\nB) Remove the doPrivileged block.\r\nC) Replace setHostFailover (hostList) with setHostFailover (Collections.unmodifiableList (hostList) ).\r\nD) Enclose the doPrivileged block in a try-catch block.\r\n */\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ocp11/exam_1Z0_819/Q1.java b/src/ocp11/exam_1Z0_819/Q1.java
+--- a/src/ocp11/exam_1Z0_819/Q1.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/ocp11/exam_1Z0_819/Q1.java	(date 1609626513719)
+@@ -13,6 +13,8 @@
+ 
+ public class Q1 {
+ 
++    private Q1 secureTransport = new Q1();
++
+     public void setHostFailover(List<String> hostList) {
+         AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
+             this.secureTransport.setHostFailover(hostList);
+Index: src/ocp11/exam_1Z0_819/Q5.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ocp11.exam_1Z0_819;\r\n\r\nclass A {\r\n\r\n    public void print() {\r\n        System.out.println(\"A\");\r\n    }\r\n\r\n}\r\n\r\nclass B extends A {\r\n\r\n    public void print() {\r\n        System.out.println(\"B\");\r\n    }\r\n}\r\n\r\nclass C extends A{\r\n    public void print() {\r\n        System.out.println(\"B\");\r\n    }\r\n}\r\n\r\npublic class Q5 {\r\n\r\n    public static void main(String[] args) {\r\n        A[] values = new B[2];\r\n        values[0] = new C();\r\n        values[0].print();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ocp11/exam_1Z0_819/Q5.java b/src/ocp11/exam_1Z0_819/Q5.java
+--- a/src/ocp11/exam_1Z0_819/Q5.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/ocp11/exam_1Z0_819/Q5.java	(date 1609626479900)
+@@ -15,7 +15,7 @@
+     }
+ }
+ 
+-class C extends A{
++class C extends A {
+     public void print() {
+         System.out.println("B");
+     }
+Index: build/built-jar.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1252
+===================================================================
+diff --git a/build/built-jar.properties b/build/built-jar.properties
+new file mode 100644
+--- /dev/null	(date 1609629379777)
++++ b/build/built-jar.properties	(date 1609629379777)
+@@ -0,0 +1,4 @@
++#Sat, 02 Jan 2021 18:16:19 -0500
++
++
++C\:\\Users\\m_hus\\IdeaProjects\\OCPStudyGuide=
+Index: derby.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>----------------------------------------------------------------\r\nMon Nov 16 05:00:31 EST 2020:\nBooting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0175-d07f-b4a8-00000f7bba78 \non database directory C:\\Users\\m_hus\\Documents\\NetBeansProjects\\OCPStudyGuide\\zoo with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@65b54208 \nLoaded from file:/C:/Program%20Files/Java/jdk-14.0.2/db/db-derby-10.14.2.0-lib/lib/derby.jar\r\njava.vendor=Oracle Corporation\njava.runtime.version=14.0.2+12-46\nuser.dir=C:\\Users\\m_hus\\Documents\\NetBeansProjects\\OCPStudyGuide\r\nos.name=Windows 10\nos.arch=amd64\nos.version=10.0\r\nderby.system.home=null\r\nDatabase Class Loader started - derby.database.classpath=''\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/derby.log b/derby.log
+--- a/derby.log	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/derby.log	(date 1609629263756)
+@@ -1,11 +1,11 @@
+ ----------------------------------------------------------------
+-Mon Nov 16 05:00:31 EST 2020:
+-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0175-d07f-b4a8-00000f7bba78 
+-on database directory C:\Users\m_hus\Documents\NetBeansProjects\OCPStudyGuide\zoo with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@65b54208 
+-Loaded from file:/C:/Program%20Files/Java/jdk-14.0.2/db/db-derby-10.14.2.0-lib/lib/derby.jar
+-java.vendor=Oracle Corporation
+-java.runtime.version=14.0.2+12-46
+-user.dir=C:\Users\m_hus\Documents\NetBeansProjects\OCPStudyGuide
++Sat Jan 02 23:14:23 UTC 2021:
++Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.1.3 - (1853019): instance a816c00e-0176-c561-6605-000007600000 
++on database directory C:\Users\m_hus\IdeaProjects\OCPStudyGuide\zoo with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@7aec35a 
++Loaded from file:/C:/Users/m_hus/AppData/Roaming/JetBrains/IntelliJIdea2020.3/jdbc-drivers/Apache%20Derby/10.15.1.3/derby-10.15.1.3.jar
++java.vendor=JetBrains s.r.o.
++java.runtime.version=11.0.9.1+11-b1145.63
++user.dir=C:\Users\m_hus\IdeaProjects\OCPStudyGuide
+ os.name=Windows 10
+ os.arch=amd64
+ os.version=10.0
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1609626252456)
++++ b/.idea/misc.xml	(date 1609626252456)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/ocp11/ch18/MyRunnable.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ocp11.ch18;\r\n\r\npublic class MyRunnable {\r\n\r\n    public static void main(String[] args) {\r\n        Runnable sloth = () -> System.out.println(\"Hello World\");\r\n        Runnable snake = () -> {\r\n            int i = 10;\r\n            i++;\r\n        };\r\n        Runnable beaver = () -> {\r\n            return;\r\n        };\r\n        Runnable coyote = () -> {\r\n        };\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ocp11/ch18/MyRunnable.java b/src/ocp11/ch18/MyRunnable.java
+--- a/src/ocp11/ch18/MyRunnable.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/ocp11/ch18/MyRunnable.java	(date 1607897801000)
+@@ -13,5 +13,9 @@
+         };
+         Runnable coyote = () -> {
+         };
++
++        Runnable capybara = () -> ""; // DOES NOT COMPILE
++        Runnable Hippopotamus = () -> 5; // DOES NOT COMPILE
++        Runnable emu = () -> {return new Object();}; // DOES NOT COMPILE
+     }
+ }
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+new file mode 100644
+--- /dev/null	(date 1609629266223)
++++ b/.idea/dataSources.xml	(date 1609629266223)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
++    <data-source source="LOCAL" name="exam" uuid="684a7243-f0a1-40b7-8b38-554f38c071f0">
++      <driver-ref>derby.embedded</driver-ref>
++      <synchronize>true</synchronize>
++      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
++      <jdbc-url>jdbc:derby:exam</jdbc-url>
++      <working-dir>$ProjectFileDir$</working-dir>
++    </data-source>
++    <data-source source="LOCAL" name="zoo" uuid="0e3a4e7e-2c0a-413e-8ead-f49bde3edf74">
++      <driver-ref>derby.embedded</driver-ref>
++      <synchronize>true</synchronize>
++      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
++      <jdbc-url>jdbc:derby:zoo</jdbc-url>
++      <working-dir>$ProjectFileDir$</working-dir>
++    </data-source>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1609626252464)
++++ b/.idea/vcs.xml	(date 1609626252464)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1609626252434)
++++ b/.idea/modules.xml	(date 1609626252434)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/OCPStudyGuide.iml" filepath="$PROJECT_DIR$/OCPStudyGuide.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/ocp11/exam_1Z0_819/Q21.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ocp11.exam_1Z0_819;\r\n//B\r\n//E\r\n\r\n@Functionallnterface\r\ninterface InterfaceD {\r\n\r\n    int breed(int x);\r\n}\r\n\r\ninterface InterfaceA {\r\n\r\n    int GERM = 13;\r\n\r\n    public default int getGERM() {\r\n        return GERM;\r\n    }\r\n}\r\n\r\n@FunctionalInterface\r\ninterface InterfaceC {\r\n\r\n    public boolean equals(Object \r\n\r\n    0);\r\n    int breed(int x);\r\n\r\n    int calculate(int x, int y);\r\n}\r\n\r\n@FunctionalInterface\r\ninterface InterfaceE {\r\n\r\n    public boolean equals(int i);\r\n\r\n    int breed(int x);\r\n}\r\n\r\n@FunctionalInterface\r\ninterface InterfaceB {\r\n\r\n    int GERM = 13;\r\n\r\n    public default int getGERM() {\r\n        return get();\r\n    }\r\n\r\n    private int get() {\r\n        return GERM;\r\n    }\r\n\r\n    public boolean equals(Object o);\r\n    int breed(int x);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/ocp11/exam_1Z0_819/Q21.java b/src/ocp11/exam_1Z0_819/Q21.java
+--- a/src/ocp11/exam_1Z0_819/Q21.java	(revision a4dafad340dbcc9de2c4d0e236c5c92eed876d0f)
++++ b/src/ocp11/exam_1Z0_819/Q21.java	(date 1609629439658)
+@@ -2,7 +2,7 @@
+ //B
+ //E
+ 
+-@Functionallnterface
++@FunctionalInterface
+ interface InterfaceD {
+ 
+     int breed(int x);
+Index: .idea/sqldialects.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/sqldialects.xml b/.idea/sqldialects.xml
+new file mode 100644
+--- /dev/null	(date 1609626363061)
++++ b/.idea/sqldialects.xml	(date 1609626363061)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="SqlDialectMappings">
++    <file url="file://$PROJECT_DIR$/src/ocp11/ch21/BasicSQL.sql" dialect="GenericSQL" />
++    <file url="PROJECT" dialect="Derby" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/ant.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/ant.xml b/.idea/ant.xml
+new file mode 100644
+--- /dev/null	(date 1609628558274)
++++ b/.idea/ant.xml	(date 1609628558274)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AntConfiguration">
++    <buildFile url="file://$PROJECT_DIR$/build.xml" />
++  </component>
++</project>
+\ No newline at end of file
