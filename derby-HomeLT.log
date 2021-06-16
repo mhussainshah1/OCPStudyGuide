@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Mon Jan 04 00:25:01 EST 2021D001 : [0] The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585), [1] a816c00e-0176-cbdb-14b7-00000f7c1ea8, [2] C:\Users\m_hus\OneDrive\Documents\NetBeansProjects\OCPStudyGuide\zoo, [3] jdk.internal.loader.ClassLoaders$AppClassLoader@2ff4acd0, [4] file:/C:/Program%20Files/Java/jdk-15.0.1/db/db-derby-10.15.2.0-lib/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=15.0.1+9-18
+user.dir=C:\Users\m_hus\OneDrive\Documents\NetBeansProjects\OCPStudyGuide
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+C005 : [0] 

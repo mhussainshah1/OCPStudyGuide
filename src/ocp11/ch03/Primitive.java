@@ -5,7 +5,7 @@ public class Primitive {
     long primitive() {
         byte b = (byte) 1;
              b = (short) 1;
-             b = 1; //int ( -128  tp 127)
+             b = 1; //int ( -128  to 127)
  
         
         short s = (byte) 1;
